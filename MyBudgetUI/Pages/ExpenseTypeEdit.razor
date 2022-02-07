@@ -1,0 +1,16 @@
+﻿@page "/expensetypeedit/{id}"
+@inherits ExpenseTypeEditBase
+
+<h3>Edit expense type #@ExpenseType.Id</h3>
+
+<EditForm class="form-inline" Model="@ExpenseType">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <InputText class="form-control mx-2" id="name" @bind-Value="ExpenseType.Name" />
+    <InputText class="form-control mx-2" id="comment" @bind-Value="ExpenseType.Comment" />
+
+    <a href="/expensetype" class = "btn btn-outline-primary m-1">Back</a>
+    <button type="submit" class="btn btn-outline-primary m-1">Save</button>
+    
+</EditForm>

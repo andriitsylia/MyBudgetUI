@@ -1,0 +1,41 @@
+﻿@page "/expensetype"
+@inherits ExpenseTypeBase
+
+<h3>ExpenseType</h3>
+
+@if (ExpenseTypes == null)
+{
+    <div class ="d-flex justify-content-center">
+        <div class = "spinner-border"></div>
+    </div>
+}
+else
+{
+    @if (ExpenseTypes.Any())
+    {
+        <table class="table table-striped table-bordered my-3">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Comment</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in ExpenseTypes)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>@item.Comment</td>
+                        <td>
+                            <a href = "@($"expensetypeedit/{item.Id}")" class = "btn btn-outline-primary m-1">Edit</a>
+                            <a href = "#" class = "btn btn-outline-primary m-1">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}

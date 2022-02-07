@@ -1,0 +1,17 @@
+﻿@page "/incometypeedit/{id}"
+@inherits IncomeTypeEditBase
+
+<h3>Edit income type #@IncomeType.Id</h3>
+
+<EditForm class="form-inline" Model="@IncomeType">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <InputText class="form-control mx-2" id="name" @bind-Value="IncomeType.Name" />
+    <InputText class="form-control mx-2" id="comment" @bind-Value="IncomeType.Comment" />
+
+    <a href="/incometype" class = "btn btn-outline-primary m-1">Back</a>
+    <button type="submit" class="btn btn-outline-primary m-1">Save</button>
+    
+</EditForm>
+

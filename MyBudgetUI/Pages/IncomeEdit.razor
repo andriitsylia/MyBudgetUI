@@ -1,0 +1,26 @@
+﻿@page "/incomeedit/{id}"
+@inherits IncomeEditBase
+
+@if (Income == null)
+{
+    <div class="spinner-border justify-content-center"></div>
+}
+else
+{
+    <h3>Edit income #@Income.Id</h3>
+
+    <EditForm class="form-inline" Model="@Income">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <InputDate class="form-control mx-2" id="date" @bind-Value="Income.Date" />
+        <InputText class="form-control mx-2" id="incometypename" @bind-Value="Income.IncomeType.Name" />
+        <InputNumber class="form-control mx-2" id="sum" @bind-Value="Income.Sum" />
+        <InputText class="form-control mx-2" id="comment" @bind-Value="Income.Comment" />
+        <InputNumber class="form-control mx-2" id="incometypeid" @bind-Value="Income.IncomeTypeId" />
+
+        <a href="/income" class = "btn btn-outline-primary m-1">Back</a>
+        <button type="submit" class="btn btn-outline-primary m-1">Save</button>
+    
+    </EditForm>
+}

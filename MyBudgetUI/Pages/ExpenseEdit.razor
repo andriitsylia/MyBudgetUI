@@ -1,0 +1,26 @@
+﻿@page "/expenseedit/{id}"
+@inherits ExpenseEditBase
+
+@if (Expense == null)
+{
+    <div class="spinner-border justify-content-center"></div>
+}
+else
+{
+    <h3>Edit expense #@Expense.Id</h3>
+
+    <EditForm class="form-inline" Model="@Expense">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <InputDate class="form-control mx-2" id="date" @bind-Value="Expense.Date" />
+        <InputText class="form-control mx-2" id="expensetypename" @bind-Value="Expense.ExpenseType.Name" />
+        <InputNumber class="form-control mx-2" id="sum" @bind-Value="Expense.Sum" />
+        <InputText class="form-control mx-2" id="comment" @bind-Value="Expense.Comment" />
+        <InputNumber class="form-control mx-2" id="expensetypeid" @bind-Value="Expense.ExpenseTypeId" />
+
+        <a href="/expense" class = "btn btn-outline-primary m-1">Back</a>
+        <button type="submit" class="btn btn-outline-primary m-1">Save</button>
+    
+    </EditForm>
+}
