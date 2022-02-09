@@ -13,6 +13,8 @@ namespace MyBudgetUI.Pages
         [Inject]
         public IExpenseTypeService ExpenseTypeService { get; set; }
 
+        public int Counter { get; set; } = 1;
+
         protected override async Task OnInitializedAsync()
         {
             ExpenseTypes = await ExpenseTypeService.GetExpenseTypes();

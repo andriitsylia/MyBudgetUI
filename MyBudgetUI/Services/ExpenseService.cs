@@ -24,5 +24,10 @@ namespace MyBudgetUI.Services
         {
             return await _httpClient.GetFromJsonAsync<IEnumerable<ExpenseModel>>("api/expense");
         }
+
+        public async Task<HttpResponseMessage> UpdateExpense(ExpenseModel expense)
+        {
+            return await _httpClient.PutAsJsonAsync<ExpenseModel>("api/expense", expense);
+        }
     }
 }

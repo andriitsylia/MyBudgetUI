@@ -7,20 +7,48 @@
 }
 else
 {
-    <h3>Edit expense #@Expense.Id</h3>
-
-    <EditForm class="form-inline" Model="@Expense">
+    <EditForm Model="@Expense" OnValidSubmit="SaveExpense">
         <DataAnnotationsValidator />
-        <ValidationSummary />
 
-        <InputDate class="form-control mx-2" id="date" @bind-Value="Expense.Date" />
-        <InputText class="form-control mx-2" id="expensetypename" @bind-Value="Expense.ExpenseType.Name" />
-        <InputNumber class="form-control mx-2" id="sum" @bind-Value="Expense.Sum" />
-        <InputText class="form-control mx-2" id="comment" @bind-Value="Expense.Comment" />
-        <InputNumber class="form-control mx-2" id="expensetypeid" @bind-Value="Expense.ExpenseTypeId" />
+        <h3>Edit expense</h3>
+        <hr>
 
-        <a href="/expense" class = "btn btn-outline-primary m-1">Back</a>
-        <button type="submit" class="btn btn-outline-primary m-1">Save</button>
-    
+        <div class="form-group row">
+            <label for="date" class="col-form-label col-sm-1">Date:</label>
+            <div class="col-sm-6">
+                <InputDate class="form-control" id="date" @bind-Value="Expense.Date" />
+                <ValidationMessage For="@(() => Expense.Date)" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="expensetype" class="col-form-label col-sm-1">Expense</label>
+            <div class="col-sm-6">
+                <InputSelect class="form-control " id="expensetype" @bind-Value="Expense.ExpenseTypeId">
+                    @foreach (var expenseType in ExpenseTypes)
+                   {
+                       <option value="@expenseType.Id">@expenseType.Name</option>
+                   }
+                </InputSelect>
+                <ValidationMessage For="@(() => Expense.ExpenseTypeId)" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="sum" class="col-form-label col-sm-1">Sum</label>
+            <div class="col-sm-6">
+                <InputNumber class="form-control" id="sum" @bind-Value="Expense.Sum" />
+                <ValidationMessage For="@(() => Expense.Sum)" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="comment" class="col-form-label col-sm-1">Comment</label>
+            <div class="col-sm-6">
+                <InputText class="form-control" id="comment" @bind-Value="Expense.Comment" />
+                <ValidationMessage For="@(() => Expense.Comment)" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <a href="/expense" class = "btn btn-outline-primary m-2">Back</a>
+            <button type="submit" class="btn btn-outline-primary m-2">Save</button>
+        </div>
     </EditForm>
 }
