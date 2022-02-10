@@ -1,0 +1,59 @@
+﻿@page "/incomeedit/{id}"
+@page "/incomeedit"
+
+@inherits IncomeEditBase
+
+@if (Income == null)
+{
+    <div class="spinner-border justify-content-center"></div>
+}
+else
+{
+    <EditForm Model="@Income" OnValidSubmit="SaveIncome">
+        <DataAnnotationsValidator />
+
+        <h3><b>@PageHeader</b></h3>
+
+        <div class="form-group row">
+            <label for="date" class="col-form-label col-sm-1">Date:</label>
+            <div class="col-sm-6">
+                <InputDate class="form-control" id="date" @bind-Value="Income.Date" />
+                <ValidationMessage For="@(() => Income.Date)" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="incometype" class="col-form-label col-sm-1">Income</label>
+            <div class="col-sm-6">
+                <InputSelect class="form-control " id="incometype" @bind-Value="Income.IncomeTypeId">
+                    @foreach (var incomeType in IncomeTypes)
+                   {
+                       <option value="@incomeType.Id">@incomeType.Name</option>
+                   }
+                </InputSelect>
+                <ValidationMessage For="@(() => Income.IncomeTypeId)" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="sum" class="col-form-label col-sm-1">Sum</label>
+            <div class="col-sm-6">
+                <InputNumber class="form-control" id="sum" @bind-Value="Income.Sum" />
+                <ValidationMessage For="@(() => Income.Sum)" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="comment" class="col-form-label col-sm-1">Comment</label>
+            <div class="col-sm-6">
+                <InputText class="form-control" id="comment" @bind-Value="Income.Comment" />
+                <ValidationMessage For="@(() => Income.Comment)" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <a href="/income" class = "btn btn-outline-primary m-2">Back</a>
+            <button type="submit" class="btn btn-outline-primary m-2">Save</button>
+            @if (Income.Id > 0)
+            {
+                <button type="button" class="btn btn-outline-danger m-2" @onclick="DeleteIncome">Delete</button>
+            }
+        </div>
+    </EditForm>
+}

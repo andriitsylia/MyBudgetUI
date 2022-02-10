@@ -1,4 +1,6 @@
 ﻿@page "/expenseedit/{id}"
+@page "/expenseedit"
+
 @inherits ExpenseEditBase
 
 @if (Expense == null)
@@ -10,8 +12,7 @@ else
     <EditForm Model="@Expense" OnValidSubmit="SaveExpense">
         <DataAnnotationsValidator />
 
-        <h3>Edit expense</h3>
-        <hr>
+        <h3><b>@PageHeader</b></h3>
 
         <div class="form-group row">
             <label for="date" class="col-form-label col-sm-1">Date:</label>
@@ -49,6 +50,10 @@ else
         <div class="form-group row">
             <a href="/expense" class = "btn btn-outline-primary m-2">Back</a>
             <button type="submit" class="btn btn-outline-primary m-2">Save</button>
+            @if (Expense.Id > 0)
+            {
+                <button type="button" class="btn btn-outline-danger m-2" @onclick="DeleteExpense">Delete</button>
+            }
         </div>
     </EditForm>
 }

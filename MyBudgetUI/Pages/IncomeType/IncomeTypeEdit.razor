@@ -1,0 +1,40 @@
+﻿@page "/incometypeedit/{id}"
+@page "/incometypeedit"
+
+@inherits IncomeTypeEditBase
+
+@if (IncomeType == null)
+{
+    <div class="spinner-border justify-content-center"></div>
+}
+else
+{
+    <EditForm Model="@IncomeType" OnValidSubmit="SaveIncomeType">
+        <DataAnnotationsValidator />
+
+        <h3><b>@PageHeader</b></h3>
+
+        <div class="form-group row">
+            <label for="name" class="col-form-label col-sm-1">Name:</label>
+            <div class="col-sm-6">
+                <InputText class="form-control" id="name" @bind-Value="IncomeType.Name" />
+                <ValidationMessage For="@(() => IncomeType.Name)" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="comment" class="col-form-label col-sm-1">Comment:</label>
+            <div class="col-sm-6">
+                <InputText class="form-control" id="comment" @bind-Value="IncomeType.Comment" />
+                <ValidationMessage For="@(() => IncomeType.Comment)" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <a href="/incometype" class = "btn btn-outline-primary m-1">Back</a>
+            <button type="submit" class="btn btn-outline-primary m-1">Save</button>
+            @if (IncomeType.Id > 0)
+            {
+                <button type="button" class="btn btn-outline-danger m-1" @onclick="DeleteIncomeType">Delete</button>
+            }
+        </div>
+    </EditForm>
+}
