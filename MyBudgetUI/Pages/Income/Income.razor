@@ -4,26 +4,28 @@
 
 @if (Incomes == null)
 {
-    <div class = "spinner-border justify-content-center"></div>
+    <div class="d-flex align-items-center">
+        <strong>Загрузка доходов...</strong>
+        <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+    </div>
 }
 else
 {
     @if (Incomes.Any())
     {
         <div class="d-flex flex-row align-items-center">
-            <h3><b>List of the incomes</b></h3>
-            <a href="/incomeedit" class="btn btn-outline-primary mx-4">Create</a>
+            <h3>Список доходов</h3>
+            <a href="/incomeedit" class="btn btn-outline-primary mx-4">Создать</a>
         </div>
-        
 
         <table class="table table-striped table-bordered my-3">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Date</th>
-                    <th>Name</th>
-                    <th>Sum</th>
-                    <th>Comment</th>
+                    <th>Дата</th>
+                    <th>Название</th>
+                    <th>Сумма</th>
+                    <th>Примечание</th>
                     <th></th>
                 </tr>
             </thead>
@@ -37,9 +39,9 @@ else
                         <td>@item.Sum</td>
                         <td>@item.Comment</td>
                         <td>
-                            <a href = "@($"incomeedit/{item.Id}")" class = "btn btn-outline-primary mx-1">Edit</a>
+                            <a href = "@($"incomeedit/{item.Id}")" class = "btn btn-outline-primary mx-1">Редактировать</a>
                             <button type="button" class = "btn btn-outline-danger mx-1" value="@item.Id"@onclick="(() => DeleteIncome(item.Id))">
-                                Delete
+                                Удалить
                             </button>
                         </td>
                     </tr>

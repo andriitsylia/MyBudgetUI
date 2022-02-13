@@ -1,5 +1,6 @@
 ﻿using MyBudgetUI.Interfaces;
 using MyBudgetUI.Models;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -39,6 +40,41 @@ namespace MyBudgetUI.Services
         public async Task<HttpResponseMessage> Delete(int id)
         {
             return await _httpClient.DeleteAsync($"api/expense/{id}");
+        }
+
+        public async Task<ExpenseTotalOnDateModel> GetOnDate(DateTime date)
+        {
+            var result = await _httpClient.GetAsync($"api/expense/date={date.ToShortDateString()}");
+            
+            if (result.IsSuccessStatusCode)
+            {
+                return await result.Content.ReadFromJsonAsync<ExpenseTotalOnDateModel>();
+            }
+
+            return new ExpenseTotalOnDateModel()
+            {
+                Date = date,
+                Total = 0,
+                Expenses = new List<ExpenseModel>()
+            };
+        }
+
+        public async Task<ExpenseTotalOnDateIntervalModel> GetOnDateInterval(DateTime beginDate, DateTime endDate)
+        {
+            var result = await _httpClient.GetAsync($"api/expense/begindate={beginDate.ToShortDateString()}&enddate={endDate.ToShortDateString()}");
+
+            if (result.IsSuccessStatusCode)
+            {
+                return await result.Content.ReadFromJsonAsync<ExpenseTotalOnDateIntervalModel>();
+            }
+
+            return new ExpenseTotalOnDateIntervalModel()
+            {
+                BeginDate = beginDate,
+                EndDate = endDate,
+                Total = 0,
+                Expenses = new List<ExpenseModel>()
+            };
         }
     }
 }

@@ -26,12 +26,12 @@ namespace MyBudgetUI.Pages.IncomeType
             int.TryParse(Id, out int IncomeTypeId);
             if (IncomeTypeId > 0)
             {
-                PageHeader = "Edit income type";
+                PageHeader = "Редактирование типа дохода";
                 IncomeType = await IncomeTypeService.GetById(IncomeTypeId);
             }
             else
             {
-                PageHeader = "Create income type";
+                PageHeader = "Создание типа дохода";
                 IncomeType = new();
             }
         }

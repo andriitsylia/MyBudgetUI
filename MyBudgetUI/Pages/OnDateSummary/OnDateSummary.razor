@@ -1,0 +1,17 @@
+﻿@using MyBudgetUI.Pages.Expense
+@using MyBudgetUI.Pages.Income
+
+@page "/ondatesummary/{date}"
+
+@inherits OnDateSummaryBase
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <IncomeTotalOnDate Date=@Date />
+        </div>
+        <div class="col">
+            <ExpenseTotalOnDate Date=@Date />
+        </div>
+    </div>
+</div>

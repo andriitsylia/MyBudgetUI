@@ -1,22 +1,21 @@
-﻿@page "/expense"
+﻿@page "/expensetotalondateinterval/{begindate}/{enddate}"
 
-@inherits ExpenseBase
+@inherits ExpenseTotalOnDateIntervalBase
 
-@if (Expenses == null)
+@if (ExpenseTotalOnDateInterval == null)
 {
     <div class="d-flex align-items-center">
-        <strong>Загрузка расходов...</strong>
+        <strong>Загрузка списка расходов...</strong>
         <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
     </div>
 }
 else
 {
-    @if (Expenses.Any())
+    <h3>Расходы за период @BeginDate - @EndDate</h3>
+    @if (ExpenseTotalOnDateInterval.Expenses.Any())
     {
-        <div class="d-flex flex-row align-items-center">
-            <h3>Список расходов</h3>
-            <a href="/expenseedit" class="btn btn-outline-primary mx-4">Создать</a>
-        </div>
+        <h4>Всего @ExpenseTotalOnDateInterval.Total</h4>
+        <h4>Список расходов</h4>
 
         <table class="table table-striped table-bordered my-2">
             <thead>
@@ -26,11 +25,10 @@ else
                     <th>Название</th>
                     <th>Сумма</th>
                     <th>Примечание</th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach(var item in Expenses)
+                @foreach (var item in ExpenseTotalOnDateInterval.Expenses)
                 {
                     <tr>
                         <td>@(Counter++)</td>
@@ -38,15 +36,13 @@ else
                         <td>@item.ExpenseType.Name</td>
                         <td>@item.Sum</td>
                         <td>@item.Comment</td>
-                        <td>
-                            <a href = "@($"expenseedit/{item.Id}")" class = "btn btn-outline-primary mx-1">Редактировать</a>
-                            <button type="button" class="btn btn-outline-danger mx-1" value="@item.Id" @onclick="(() => Delete(item.Id))">
-                                Удалить
-                            </button>
-                        </td>
                     </tr>
                 }
             </tbody>
         </table>
+    }
+    else
+    {
+        <h4>Информация о расходах отсутствует</h4>
     }
 }

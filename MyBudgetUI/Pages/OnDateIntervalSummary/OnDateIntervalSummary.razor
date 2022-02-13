@@ -1,0 +1,18 @@
+﻿@using MyBudgetUI.Pages.Expense
+@using MyBudgetUI.Pages.Income
+
+@page "/ondateintervalsummary/{begindate}/{enddate}"
+
+@inherits OnDateIntervalSummaryBase
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <IncomeTotalOnDateInterval BeginDate=@BeginDate EndDate=@EndDate />
+        </div>
+        <div class="col">
+            <ExpenseTotalOnDateInterval BeginDate=@BeginDate EndDate=@EndDate />
+        </div>
+    </div>
+</div>
+

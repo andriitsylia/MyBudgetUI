@@ -34,12 +34,12 @@ namespace MyBudgetUI.Pages.Expense
             int.TryParse(Id, out int ExpenseId);
             if (ExpenseId > 0)
             {
-                PageHeader = "Edit expense";
+                PageHeader = "Редактирование";
                 Expense = await ExpenseService.GetById(ExpenseId);
             }
             else
             {
-                PageHeader = "Create expense";
+                PageHeader = "Создание";
                 Expense = new ExpenseModel() { Date = DateTime.Today, ExpenseType = new ExpenseTypeModel() };
             }
             ExpenseTypes = (await ExpenseTypeService.GetAll()).OrderBy(o => o.Name);

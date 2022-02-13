@@ -1,0 +1,49 @@
+﻿@page "/expensetotalondate/{date}"
+
+@inherits ExpenseTotalOnDateBase
+
+@if (ExpenseTotalOnDate == null)
+{
+    <div class="d-flex align-items-center">
+        <strong>Загрузка списка расходов...</strong>
+        <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+    </div>
+}
+else
+{
+    <h3>Расходы на @Date</h3>
+    @if (ExpenseTotalOnDate.Expenses.Any())
+    {
+        <h4>Всего @ExpenseTotalOnDate.Total</h4>
+        <h4>Список расходов</h4>
+
+        <table class="table table-striped table-bordered my-2">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Дата</th>
+                    <th>Название</th>
+                    <th>Сумма</th>
+                    <th>Примечение</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ExpenseTotalOnDate.Expenses)
+                {
+                    <tr>
+                        <td>@(Counter++)</td>
+                        <td>@item.Date.ToShortDateString()</td>
+                        <td>@item.ExpenseType.Name</td>
+                        <td>@item.Sum</td>
+                        <td>@item.Comment</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <h4>Информация о расходах отсутствует</h4>
+    }
+
+}

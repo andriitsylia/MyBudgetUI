@@ -1,4 +1,5 @@
 ﻿using MyBudgetUI.Models;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -12,5 +13,7 @@ namespace MyBudgetUI.Interfaces
         Task<HttpResponseMessage> Update(IncomeModel income);
         Task<HttpResponseMessage> Create(IncomeModel income);
         Task<HttpResponseMessage> Delete(int id);
+        Task<IncomeTotalOnDateModel> GetOnDate(DateTime date);
+        Task<IncomeTotalOnDateIntervalModel> GetOnDateInterval(DateTime beginDate, DateTime endDate);
     }
 }

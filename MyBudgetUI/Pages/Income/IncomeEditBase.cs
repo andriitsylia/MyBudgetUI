@@ -34,12 +34,12 @@ namespace MyBudgetUI.Pages.Income
             int.TryParse(Id, out int IncomeId);
             if (IncomeId > 0)
             {
-                PageHeader = "Edit income";
+                PageHeader = "Редактирование";
                 Income = await IncomeService.GetById(IncomeId);
             }
             else
             {
-                PageHeader = "Create income";
+                PageHeader = "Создание";
                 Income = new IncomeModel() { Date = DateTime.Today, IncomeType = new IncomeTypeModel() };
             }
             IncomeTypes = (await IncomeTypeService.GetAll()).OrderBy(o => o.Name);

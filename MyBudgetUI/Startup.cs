@@ -1,17 +1,12 @@
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MyBudgetUI.Interfaces;
 using MyBudgetUI.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace MyBudgetUI
 {
@@ -26,25 +21,27 @@ namespace MyBudgetUI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var baseAddress = new Uri(Configuration["BaseAddress"]);
+
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<HttpClient>();
 
             services.AddHttpClient<IIncomeTypeService, IncomeTypeService>(client =>
             {
-                client.BaseAddress = new Uri("https://localhost:5001/");
+                client.BaseAddress = baseAddress;
             });
             services.AddHttpClient<IExpenseTypeService, ExpenseTypeService>(client =>
             {
-                client.BaseAddress = new Uri("https://localhost:5001/");
+                client.BaseAddress = baseAddress;
             });
             services.AddHttpClient<IIncomeService, IncomeService>(client =>
             {
-                client.BaseAddress = new Uri("https://localhost:5001/");
+                client.BaseAddress = baseAddress;
             });
             services.AddHttpClient<IExpenseService, ExpenseService>(client =>
             {
-                client.BaseAddress = new Uri("https://localhost:5001/");
+                client.BaseAddress = baseAddress;
             });
         }
 

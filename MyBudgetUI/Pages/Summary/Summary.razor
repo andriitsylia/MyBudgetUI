@@ -1,0 +1,44 @@
+﻿@page "/"
+@page "/summary"
+
+
+@inherits SummaryBase
+
+<h3>Отчет о доходах и расходах</h3>
+
+<div class="mb-6">
+    <div class="mb-3">
+        <h4>На дату</h4>
+    </div>
+    <div class="row mb-3">
+        <label for="date" class="col-form-label col-sm-1">Дата</label>
+        <div class="col-sm-4"> 
+            <input type="date" class="form-control" id="date" @bind="Date" />
+        </div>
+    </div>
+     <div class="mb-3">
+         <a href="/ondatesummary/@(Date.ToShortDateString())" type="button" class="btn btn-outline-primary" >Select</a>
+     </div>
+</div>
+
+<div class="mb-3">
+    <div class="mb-3">
+        <h4>За период</h4>
+    </div>
+    <div class="row">
+        <label for="begindate" class="col-form-label col-sm-1">Начальная дата</label>
+        <div class="col-sm-4">
+            <input type="date" class="form-control" id="begindate" @bind="BeginDate" />
+        </div>
+    </div>
+    <div class="row">
+        <label for="enddate" class="col-form-label col-sm-1">Конечная дата</label>
+        <div class="col-sm-4">
+            <input type="date" class="form-control" id="enddate" @bind="EndDate" />
+        </div>
+    </div>
+    <div class="mb-3">
+        <a href="/ondateintervalsummary/@(BeginDate.ToShortDateString())/@(EndDate.ToShortDateString())"
+            type="button" class="btn btn-outline-primary" >Select</a>
+    </div>
+</div>

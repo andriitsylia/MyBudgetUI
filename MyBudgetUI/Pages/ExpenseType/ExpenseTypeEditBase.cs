@@ -26,12 +26,12 @@ namespace MyBudgetUI.Pages.ExpenseType
             int.TryParse(Id, out int expenseTypeId);
             if (expenseTypeId > 0)
             {
-                PageHeader = "Edit expense type";
+                PageHeader = "Редактирование типа расхода";
                 ExpenseType = await ExpenseTypeService.GetById(expenseTypeId);
             }
             else
             {
-                PageHeader = "Create expense type";
+                PageHeader = "Создание типа расхода";
                 ExpenseType = new();
             }
         }
