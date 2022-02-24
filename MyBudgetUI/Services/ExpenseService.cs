@@ -44,7 +44,7 @@ namespace MyBudgetUI.Services
 
         public async Task<ExpenseTotalOnDateModel> GetOnDate(DateTime date)
         {
-            var result = await _httpClient.GetAsync($"api/expense/date={date.ToShortDateString()}");
+            var result = await _httpClient.GetAsync($"api/expense/date={date:yyyy-MM-dd}");
             
             if (result.IsSuccessStatusCode)
             {
@@ -61,7 +61,7 @@ namespace MyBudgetUI.Services
 
         public async Task<ExpenseTotalOnDateIntervalModel> GetOnDateInterval(DateTime beginDate, DateTime endDate)
         {
-            var result = await _httpClient.GetAsync($"api/expense/begindate={beginDate.ToShortDateString()}&enddate={endDate.ToShortDateString()}");
+            var result = await _httpClient.GetAsync($"api/expense/begindate={beginDate:yyyy-MM-dd}&enddate={endDate:yyyy-MM-dd}");
 
             if (result.IsSuccessStatusCode)
             {
