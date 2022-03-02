@@ -17,7 +17,7 @@
         </div>
     </div>
      <div class="mb-3">
-         <a href="/ondatesummary/@(Date.ToShortDateString())" type="button" class="btn btn-outline-primary" >Select</a>
+         <a href="/ondatesummary/@(Date.ToString("dd.MM.yyyy"))" type="button" class="btn btn-outline-primary" >Select</a>
      </div>
 </div>
 
@@ -38,7 +38,7 @@
         </div>
     </div>
     <div class="mb-3">
-        <a href="/ondateintervalsummary/@(BeginDate.ToShortDateString())/@(EndDate.ToShortDateString())"
+        <a href="/ondateintervalsummary/@(BeginDate.ToString("dd.MM.yyyy"))/@(EndDate.ToString("dd.MM.yyyy"))"
             type="button" class="btn btn-outline-primary" >Select</a>
     </div>
 </div>
