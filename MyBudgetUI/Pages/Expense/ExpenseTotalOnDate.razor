@@ -32,7 +32,7 @@ else
                 {
                     <tr>
                         <td>@(Counter++)</td>
-                        <td>@item.Date.ToShortDateString()</td>
+                        <td>@item.Date.ToString("dd-MM-yyyy")</td>
                         <td>@item.ExpenseType.Name</td>
                         <td>@item.Sum</td>
                         <td>@item.Comment</td>

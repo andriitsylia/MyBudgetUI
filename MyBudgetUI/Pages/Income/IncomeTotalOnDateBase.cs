@@ -3,6 +3,7 @@ using MyBudgetUI.Interfaces;
 using MyBudgetUI.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 
 namespace MyBudgetUI.Pages.Income
@@ -21,7 +22,8 @@ namespace MyBudgetUI.Pages.Income
 
         protected override async Task OnInitializedAsync()
         {
-            IncomeTotalOnDate = await IncomeService.GetOnDate(DateTime.Parse(Date));
+            IncomeTotalOnDate = await IncomeService.GetOnDate(DateTime.ParseExact(Date, "dd.MM.yyyy", CultureInfo.InvariantCulture));
+            
         }
     }
 }

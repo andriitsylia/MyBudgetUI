@@ -2,6 +2,7 @@
 using MyBudgetUI.Interfaces;
 using MyBudgetUI.Models;
 using System;
+using System.Globalization;
 using System.Threading.Tasks;
 
 namespace MyBudgetUI.Pages.Expense
@@ -23,7 +24,9 @@ namespace MyBudgetUI.Pages.Expense
 
         protected override async Task OnInitializedAsync()
         {
-            ExpenseTotalOnDateInterval = await ExpenseService.GetOnDateInterval(DateTime.Parse(BeginDate), DateTime.Parse(EndDate));
+            ExpenseTotalOnDateInterval = await ExpenseService.GetOnDateInterval(
+                DateTime.ParseExact(BeginDate, "dd.MM.yyyy", CultureInfo.InvariantCulture),
+                DateTime.ParseExact(EndDate, "dd.MM.yyyy", CultureInfo.InvariantCulture));
         }
     }
 }

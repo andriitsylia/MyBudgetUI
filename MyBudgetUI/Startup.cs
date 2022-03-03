@@ -24,7 +24,7 @@ namespace MyBudgetUI
             var baseAddress = new Uri(Configuration["BaseAddress"]);
 
             services.AddRazorPages();
-            services.AddServerSideBlazor();
+            services.AddServerSideBlazor().AddCircuitOptions(options => { options.DetailedErrors = true; });
             services.AddSingleton<HttpClient>();
 
             services.AddHttpClient<IIncomeTypeService, IncomeTypeService>(client =>

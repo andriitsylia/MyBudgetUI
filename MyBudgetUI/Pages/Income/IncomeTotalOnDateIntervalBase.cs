@@ -2,6 +2,7 @@
 using MyBudgetUI.Interfaces;
 using MyBudgetUI.Models;
 using System;
+using System.Globalization;
 using System.Threading.Tasks;
 
 namespace MyBudgetUI.Pages.Income
@@ -23,7 +24,9 @@ namespace MyBudgetUI.Pages.Income
 
         protected override async Task OnInitializedAsync()
         {
-            IncomeTotalOnDateInterval = await IncomeService.GetOnDateInterval(DateTime.Parse(BeginDate), DateTime.Parse(EndDate));
+            IncomeTotalOnDateInterval = await IncomeService.GetOnDateInterval(
+                DateTime.ParseExact(BeginDate, "dd.MM.yyyy", CultureInfo.InvariantCulture),
+                DateTime.ParseExact(EndDate, "dd.MM.yyyy", CultureInfo.InvariantCulture));
         }
     }
 }
